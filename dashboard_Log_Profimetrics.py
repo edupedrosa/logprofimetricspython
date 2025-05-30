@@ -17,8 +17,8 @@ ambiente = st.sidebar.selectbox("Selecione o ambiente:", ["Homologação", "Prod
 # Configurações de conexão
 if ambiente == "Produção":
     dsn = "rds-scan:1521/r102_consulta.raiadrogasil.com.br"
-    user = st.secrets["produçao"]["user"]         # Acessando o usuário de Produção
-    password = st.secrets["produçao"]["password"] # Acessando a senha de Produção
+    user = st.secrets["producao"]["user"]         # Acessando o usuário de Produção
+    password = st.secrets["producao"]["password"] # Acessando a senha de Produção
 else:
     dsn = "10.215.4.7:1521/R102HNEW"
     user = st.secrets["homologacao"]["user"]         # Acessando o usuário de Homologação
