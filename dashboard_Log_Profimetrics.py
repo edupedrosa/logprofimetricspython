@@ -24,6 +24,17 @@ else:
     user = st.secrets["homologacao"]["user"]         # Acessando o usuário de Homologação
     password = st.secrets["homologacao"]["password"] # Acessando a senha de Homologação
 
+# Conectar ao banco de dados
+try:
+    connection = oracledb.connect(
+        user=user,
+        password=password,
+        dsn=dsn
+    )
+    #st.success("Conexão com o banco de dados realizada com sucesso!")
+except oracledb.DatabaseError as e:
+    st.error(f"Erro ao conectar ao banco de dados: {e}")
+    st.stop()  # Para a execução do Streamlit se não houver conexão
 
 # Datas padrão
 data_minima = date(2024, 1, 1)
