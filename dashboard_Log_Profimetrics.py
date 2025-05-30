@@ -8,7 +8,7 @@ import altair as alt
 st.set_page_config(layout="wide")
 
 # Logotipo no topo da barra lateral
-st.sidebar.image("imagens/logo_rd.png", use_container_width=True)
+st.sidebar.image("logo_rd.png", use_container_width=True)
 
 # Opção de ambiente
 st.sidebar.header("Ambiente")
