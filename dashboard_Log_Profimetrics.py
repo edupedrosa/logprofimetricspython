@@ -16,25 +16,21 @@ ambiente = st.sidebar.selectbox("Selecione o ambiente:", ["Homologação", "Prod
 
 # Configurações de conexão
 if ambiente == "Produção":
-    dsn = "rds-scan:1521/r102_consulta.raiadrogasil.com.br"
-    user = st.secrets["producao"]["user"]         # Acessando o usuário de Produção
-    password = st.secrets["producao"]["password"] # Acessando a senha de Produção
+    dsn = "192.168.0.16:1521/XE"
+    user = "sys"
+    password = "epedrosa"
 else:
-    dsn = "10.215.4.7:1521/R102HNEW"
-    user = st.secrets["homologacao"]["user"]         # Acessando o usuário de Homologação
-    password = st.secrets["homologacao"]["password"] # Acessando a senha de Homologação
+    dsn = "192.168.0.16:1521/XE"
+    user = "sys"
+    password = "epedrosa"
 
-# Conectar ao banco de dados
-try:
-    connection = oracledb.connect(
-        user=user,
-        password=password,
-        dsn=dsn
-    )
-    #st.success("Conexão com o banco de dados realizada com sucesso!")
-except oracledb.DatabaseError as e:
-    st.error(f"Erro ao conectar ao banco de dados: {e}")
-    st.stop()  # Para a execução do Streamlit se não houver conexão
+# Conectar ao Oracle
+connection = oracledb.connect(
+    user=user,
+    password=password,
+    dsn=dsn,
+    mode=oracledb.AUTH_MODE_SYSDBA
+)
 
 # Datas padrão
 data_minima = date(2024, 1, 1)
