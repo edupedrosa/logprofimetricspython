@@ -14,17 +14,24 @@ st.sidebar.image("logo_rd.png", use_container_width=True)
 st.sidebar.header("Ambiente")
 ambiente = st.sidebar.selectbox("Selecione o ambiente:", ["Homologação", "Produção"])
 
-# Configurações de conexão
+# Inicializar o cliente Oracle (modo thick)
+oracledb.init_oracle_client(lib_dir=r"D:\oracle\instantclient_23_8")
+
+ambiente = "Produção"  # ou "Homologacao"
+
 if ambiente == "Produção":
     dsn = "192.168.0.16:1521/XE"
-    user = "sys"
-    password = "epedrosa"
+    user = st.secrets["producao"]["user"]
+    password = st.secrets["producao"]["password"]
 else:
     dsn = "192.168.0.16:1521/XE"
-    user = "sys"
-    password = "epedrosa"
+    user = st.secrets["homologacao"]["user"]
+    password = st.secrets["homologacao"]["password"]
 
-# Conectar ao Oracle
+# Mostra no terminal os dados para verificação
+print(f"Usuário: {user}, Senha: {password}, DSN: {dsn}")
+
+# Conexão
 connection = oracledb.connect(
     user=user,
     password=password,
