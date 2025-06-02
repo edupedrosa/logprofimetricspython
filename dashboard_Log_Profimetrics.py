@@ -14,8 +14,8 @@ st.sidebar.image("logo_rd.png", use_container_width=True)
 st.sidebar.header("Ambiente")
 ambiente = st.sidebar.selectbox("Selecione o ambiente:", ["Homologação", "Produção"])
 
-# Inicializar o cliente Oracle (modo thick)
-oracledb.init_oracle_client(lib_dir=r"D:\oracle\instantclient_23_8")
+# Inicializar o cliente Oracle (modo thick) - para logar como SYSDBA
+#oracledb.init_oracle_client(lib_dir=r"D:\oracle\instantclient_23_8")
 
 ambiente = "Produção"  # ou "Homologacao"
 
@@ -36,11 +36,11 @@ connection = oracledb.connect(
     user=user,
     password=password,
     dsn=dsn,
-    mode=oracledb.AUTH_MODE_SYSDBA
+    #mode=oracledb.AUTH_MODE_SYSDBA
 )
 
 # Datas padrão
-data_minima = date(2024, 1, 1)
+data_minima = date(2025, 1, 1)
 data_maxima = datetime.today().date() #- timedelta(days=1)
 
 # Interface principal
